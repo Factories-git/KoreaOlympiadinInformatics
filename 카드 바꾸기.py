@@ -4,6 +4,7 @@ n = int(input())
 cards = list(map(int, input().split()))
 increase = 0
 decrease = 0
-c = Counter(cards)
-same = c[max(c.values())]
-print(same)
+for i in range(1,n):
+    if cards[i-1] + 1 != cards[i]:
+        cards[i] = cards[i-1]+1
+        increase += 1
