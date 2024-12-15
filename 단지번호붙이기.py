@@ -4,28 +4,36 @@ sys.setrecursionlimit(10 ** 7)
 input = sys.stdin.readline
 
 
-def dfs(x, y):
-    if x < 0 or x >= t or y < 0 or y >= t:
+def dfs(y, x):
+    global count
+    if y < 0 or y >= n or x < 0 or x >= n:
         return False
-    if farm[x][y] == 1:
-        farm[x][y] = 0
-        dfs(x - 1, y)
-        dfs(x, y - 1)
-        dfs(x + 1, y)
-        dfs(x, y + 1)
+    if map_[y][x] == 1:
+        map_[y][x] = 0
+        count += 1
+        dfs(y + 1, x)
+        dfs(y - 1, x)
+        dfs(y, x + 1)
+        dfs(y, x - 1)
         return True
-
     return False
 
 
-t = int(input())
+n = int(input())
+count = 0
+map_ = []
+counts = []
 re = 0
-farm = []
-for s in range(t):
-    farm.append(list(map(int, input().split())))
-for i in range(t):
-    for j in range(t):
-        if dfs(i, j):
+for i in range(n):
+    map_.append(list(map(int, input().strip())))
+for i in range(n):
+    for j in range(n):
+        result = dfs(i, j)
+        if result:
+            counts.append(count)
             re += 1
-    print(re)
-    re = 0
+            count = 0
+print(re)
+counts.sort()
+for i in counts:
+    print(i)
