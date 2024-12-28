@@ -1,16 +1,17 @@
 n = int(input())
 tower = list(map(int, input().split()))
 re = [0] * n
-stack = [i for i in range(n-1)]
-for i in range(n-1, 0, -1):
-    while tower[stack[-1]] < tower[i] or i == stack[-1]:
-        try:
-            stack.pop()
-            re[i] = stack[-1]
-        except IndexError:
-            break
+stack = []
+for i in range(n-1, -1, -1):
     if stack:
-        re[i] = stack[-1]
+        while stack[-1][0] <= tower[i]:
+            stack.pop()
+            if not stack:
+                break
+    if stack:
+        re[i] = stack[-1][1]
+    stack.append([tower[i], i])
+    print(stack, i)
 for i in re:
     if i <= 0:
         print(0, end=' ')
