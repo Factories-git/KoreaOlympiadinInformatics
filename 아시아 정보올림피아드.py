@@ -26,6 +26,6 @@ for i in range(len(scores)):
         continue
     bronze = (c, n)
     break
-print(gold)
-print(silver)
-print(bronze)
+print(*gold)
+print(*silver)
+print(*bronze)
