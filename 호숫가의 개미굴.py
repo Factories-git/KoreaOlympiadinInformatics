@@ -10,8 +10,6 @@ for i in range(n):
         dp[i] = dp[i-1]
         continue
     k = (i+1) % n
-    p = rooms[k] + (1 if rooms[k] == 0 else 0)
-    j = rooms[i]
     if j != 0:
         dp[i] = dp[i-1] + j
     else:
