@@ -1,4 +1,4 @@
-#21점 나온 코드
+#21점 나온 코드 (38%)
 
 n = int(input())
 rooms = list(map(int, input().split()))
@@ -16,7 +16,7 @@ for i in range(n):
     else:
         if rooms[k] == 0:
             used[k] = True
-            if i == 0 and used[-1] == 0:
+            if i == 0 and rooms[-1] == 0:
                 used[-1] = True
         dp[i] = dp[i-1] + 1
     used[i] = True
