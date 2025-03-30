@@ -1,5 +1,10 @@
 #21점 나온 코드 (38%)
 
+"""
+반례:
+8
+0 0 1 1 1 0 0 0
+"""
 n = int(input())
 rooms = list(map(int, input().split()))
 c = 0
