@@ -1,3 +1,6 @@
 n = int(input())
 s = input()
-print(min(s.lstrip('R').count('R'), s.lstrip('B').count('B'), s.rstrip('R').count('R'), s.rstrip('B').count('B')))
+print(min(s.lstrip('R').count('R'), #빨간공을 왼쪽으로 모으는 경우 (이미 모여진 왼쪽 공들을 지우고, 남은 빨간 공들을 이동시키는 횟수
+          s.lstrip('B').count('B'), #파란공을 왼쪽으로 모으는 경우 (이미 모여진 왼쪽 공들을 지우고, 남은 파란 공들을 이동시키는 횟수)
+          s.rstrip('R').count('R'), #빨간공을 오른쪽으로 모으는 경우 (이미 모여진 오른쪽 공들을 지우고, 남은 빨간 공들을 이동시키는 경우)
+          s.rstrip('B').count('B'))) #파란공을 오른쪽으로 모으는 경우 (이미 모여진 오른쪽 공들을 지우고, 남은 파란 공들을 이동시키는 경우)
