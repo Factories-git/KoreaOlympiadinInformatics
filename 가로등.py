@@ -1,28 +1,37 @@
 from collections import deque
 
 l, n, k = map(int, input().split())
-arr = list(map(int, input().split()))
-dx = [-1, 1]
+streetlights = list(map(int, input().split()))
 
-def bfs():
+
+def bfs(lights):
+    s = {}
     queue = deque()
-    streetlights = {}
-    c = 0
-    for i in arr:
+    n_k = 0
+    visited = set()
+    for i in lights:
         queue.append(i)
-        streetlights[i] = 0
-
+        visited.add(i)
+        s[i] = 0
+        n_k += 1
     while queue:
-        x = queue.popleft()
-        c += 1
-        print(streetlights[x])
-        for i in range(2):
-            nx = x + dx[i]
-            if 0 <= nx <= l and nx not in streetlights:
-                streetlights[nx] = streetlights[x] + 1
-                queue.append(nx)
-        if c == k:
-            return
+        location = queue.popleft()
+        for i in [-1, 1]:
+            nl = location + i
+            if nl < 0 or nl > l or nl in visited:
+                continue
+            s[nl] = s[location] + 1
+            visited.add(nl)
+            queue.append(nl)
+            n_k += 1
+        if n_k >= k:
+            break
+
+    result = []
+    for _, darkness in s.items():
+        result.append(darkness)
+    return sorted(result)
 
 
-bfs()
+for i in bfs(lights=streetlights)[:k]:
+    print(i)
